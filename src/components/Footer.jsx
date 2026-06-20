@@ -4,8 +4,8 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn } from "react-icons/f
 import Link from "next/link";
 const Footer = () => {
     return (
-        <footer className="bg-[#202942] px-60 pt-16">
-            <div className="grid grid-cols-4 gap-8">
+       <footer className="bg-[#202942] px-6 sm:px-10 md:px-16 lg:px-32 xl:px-60 pt-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="flex flex-col gap-3">
                     <div className="flex items-center gap-2">
                         <Image src={"/heart.png"} alt="stethoscope" width={28} height={28}></Image>
@@ -54,9 +54,9 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="flex justify-between items-center border-t border-[#3A4360] mt-12 py-6">
-                <p className="text-[#9098B1]">2026 © DocAppoint. Design & Develop with love by tashim tishan.</p>
-                <div className="flex gap-4 text-[#9098B1]">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left border-t border-[#3A4360] mt-12 py-6">
+                <p className="text-[#9098B1] text-sm md:text-base">2026 © DocAppoint. Design & Develop with love by tashim tishan.</p>
+                <div className="flex gap-4 text-[#9098B1] text-sm md:text-base">
                     <Link href="#" className="hover:text-[#6089F3]">Terms</Link>
                     <Link href="#" className="hover:text-[#6089F3]">Privacy</Link>
                     <Link href="#" className="hover:text-[#6089F3]">About</Link>

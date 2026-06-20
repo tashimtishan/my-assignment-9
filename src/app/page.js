@@ -1,7 +1,15 @@
+import Hero from "@/components/Banner";
+import Featuresdoctors from "@/components/Featuresdoctors";
+import Review from "@/components/Review";
+import Whychoosedocpoint from "@/components/Whychoosedocpoint";
+
 export default function Home() {
   return (
     <div>
-     <h2 className=" font-bold text-5xl">Homepage</h2>
+     <Hero></Hero>
+     <Featuresdoctors></Featuresdoctors>
+     <Whychoosedocpoint></Whychoosedocpoint>
+     <Review></Review>
     </div>
   );
 }

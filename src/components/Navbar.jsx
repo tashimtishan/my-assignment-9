@@ -1,28 +1,62 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { HiMenu, HiX } from "react-icons/hi";
 const Navbar = () => {
-     const pathname = usePathname();
-        const linkClass = (href) => `hover:text-[#6089F3] ${pathname === href ? "text-[#6089F3]" : ""}`;
+    const pathname = usePathname();
+    const [isOpen, setIsOpen] = useState(false);
+    const linkClass = (href) => `hover:text-[#6089F3] ${pathname === href ? "text-[#6089F3]" : ""}`;
+
+    const navLinks = (
+        <>
+            <Link href="/" className={linkClass("/")}>Home</Link>
+            <Link href="/appointments" className={linkClass("/appointments")}>All Appointments</Link>
+            <Link href="/dashboard" className={linkClass("/dashboard")}>Dashboard</Link>
+        </>
+    );
+
+    const authLinks = (
+        <>
+            <Link href="/login" className={linkClass("/login")}>Login</Link>
+            <Link href="/register" className={linkClass("/register")}>Register</Link>
+        </>
+    );
+
     return (
-       <div className="container mx-auto flex justify-between items-center py-4">
-            <div className="flex items-center gap-3">
-                {/* image here */}
-                <Image src={"/heart.png"} alt="stethoscope" width={40} height={40}></Image>
-                <Link href={"/"}><p className="text-2xl font-bold">DocAppoint</p></Link>
+        <div className="container mx-auto px-4 py-4 relative">
+            <div className="flex justify-between items-center">
+                <div className="flex items-center gap-3">
+                    <Image src={"/heart.png"} alt="stethoscope" width={40} height={40}></Image>
+                    <Link href={"/"}><p className="text-xl md:text-2xl font-bold">DocAppoint</p></Link>
+                </div>
+
+                <div className="hidden lg:flex gap-6 text-[#202020] font-medium text-lg">
+                    {navLinks}
+                </div>
+
+                <div className="hidden lg:flex gap-3 text-[#202020] font-medium text-lg">
+                    {authLinks}
+                </div>
+
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="lg:hidden p-2 text-[#202020]"
+                    aria-label="Toggle menu"
+                >
+                    {isOpen ? <HiX size={28} /> : <HiMenu size={28} />}
+                </button>
             </div>
 
-            <div className="flex gap-6 text-[#202020] font-medium text-lg">
-                <Link href="/" className={linkClass ("/")}>Home</Link>
-                <Link href="/appointments" className={linkClass ("/appointments")}>All Appointments</Link>
-                <Link href="/dashboard" className={linkClass ("/dashboard")}>Dashboard</Link>
-            </div>
-
-            <div className="flex gap-3 text-[#202020] font-medium text-lg">
-                <Link href="/login" className={linkClass ("/login")}>Login</Link>
-                <Link href="/register" className={linkClass ("/register")}>Register</Link>
-            </div>
+            {isOpen && (
+                <div className="lg:hidden flex flex-col gap-4 mt-4 pb-4 text-[#202020] font-medium text-lg border-t pt-4">
+                    {navLinks}
+                    <div className="flex gap-3 pt-2 border-t">
+                        {authLinks}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
