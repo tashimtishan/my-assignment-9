@@ -1,12 +1,32 @@
 'use client'
+import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 const Loginpage = () => {
+      const onSubmit = async (e) => {
+        e.preventDefault()
+
+        const formData = new FormData(e.currentTarget)
+        const user = Object.fromEntries(formData.entries())
+        console.log(user)
+
+        const { data, error } = await authClient.signIn.email({
+            email: user.email,
+            password: user.password
+        })
+        if (data) {
+            redirect("/")
+        }
+        if (error) {
+            alert("invalid information")
+        }
+    }
     return (
-        <Form className="flex w-120 flex-col gap-4 container mx-auto p-10 mt-10 rounded-xl shadow-lg mb-10">
+        <Form onSubmit={onSubmit} className="flex w-120 flex-col gap-4 container mx-auto p-10 mt-10 rounded-xl shadow-lg mb-10">
 
             <div className="flex flex-col items-center justify-center">
                 <Image src={"/heart.png"} alt="stethoscope" width={40} height={40}></Image>

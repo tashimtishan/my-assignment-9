@@ -4,10 +4,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HiMenu, HiX } from "react-icons/hi";
+import { authClient } from "@/lib/auth-client";
+import { Avatar, Button } from "@heroui/react";
 const Navbar = () => {
+    const { data: session, } = authClient.useSession()
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
     const linkClass = (href) => `hover:text-[#6089F3] ${pathname === href ? "text-[#6089F3]" : ""}`;
+
+    const user = session?.user
+    console.log(user)
+    const handleSignout = async () => {
+        await authClient.signOut();
+    }
 
     const navLinks = (
         <>
@@ -18,10 +27,22 @@ const Navbar = () => {
     );
 
     const authLinks = (
-        <>
-            <Link href="/login" className={linkClass("/login")}>Login</Link>
-            <Link href="/register" className={linkClass("/register")}>Register</Link>
-        </>
+  <>
+        {user ? (
+            <>
+                <Avatar>
+                    <Avatar.Image src={user?.image || undefined} alt={user?.name} />
+                    <Avatar.Fallback>{user?.name?.[0]?.toUpperCase()}</Avatar.Fallback>
+                </Avatar>
+                <Button onClick={handleSignout} variant={"danger"}>Logout</Button>
+            </>
+        ) : (
+            <>
+                <Link href="/login" className={linkClass("/login")}>Login</Link>
+                <Link href="/register" className={linkClass("/register")}>Register</Link>
+            </>
+        )}
+    </>
     );
 
     return (

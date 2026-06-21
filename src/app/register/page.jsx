@@ -1,12 +1,34 @@
 'use client'
+import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
-const Loginpage = () => {
+const Registerpage = () => {
+     const onSubmit = async (e) =>{
+        e.preventDefault()
+
+        const formData= new FormData(e.currentTarget)
+        const user= Object.fromEntries(formData.entries())
+        console.log(user)
+
+        const {data, error} =await authClient.signUp.email({
+            email: user.email,
+            image: user.image,
+            name: user.name,
+            password: user.password
+        })
+        if(data){
+            redirect("/")
+        }
+        if(error){
+            alert("invalid information")
+        }
+    }
     return (
-        <Form className="flex w-120 flex-col gap-4 container mx-auto p-10 mt-10 rounded-xl shadow-lg mb-10">
+        <Form onSubmit={onSubmit} className="flex w-120 flex-col gap-4 container mx-auto p-10 mt-10 rounded-xl shadow-lg mb-10">
 
             <div className="flex flex-col items-center justify-center">
                 <Image src={"/heart.png"} alt="stethoscope" width={40} height={40}></Image>
@@ -26,19 +48,13 @@ const Loginpage = () => {
                 isRequired
                 name="email"
                 type="email"
-                validate={(value) => {
-                    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                        return "Please enter a valid email address";
-                    }
-                    return null;
-                }}
             >
                 <Label>Email</Label>
                 <Input placeholder="Enter Your Email Address" />
                 <FieldError />
             </TextField>
             <TextField
-                name="photo Url"
+                name="image"
                 type="url"
             >
                 <Label>Photo URL (optional)</Label>
@@ -89,4 +105,4 @@ const Loginpage = () => {
     );
 };
 
-export default Loginpage;
+export default Registerpage;
