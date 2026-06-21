@@ -6,8 +6,8 @@ const departments = ["Cardiology", "Eye Care", "Dental Care", "Neurology", "Gyne
 
 const Hero = () => {
     return (
-        <section className="bg-[#F4F7FF]">
-            <div className="container mx-auto px-6 md:px-10 lg:px-20 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-12 items-center">
+        <section className="bg-[#F4F7FF] p-5 pb-20">
+            <div className="container mx-auto px-6 md:px-10 lg:px-20 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-50 items-center">
 
                 <div>
                     <p className="inline-flex items-center gap-2 text-sm font-semibold tracking-wide text-[#6089F3] uppercase">
@@ -50,7 +50,7 @@ const Hero = () => {
                     </div>
                 </div>
 
-                <div className="relative max-w-sm mx-auto lg:max-w-md lg:mx-0">
+                <div className="relative max-w-sm mx-auto lg:max-w-md lg:mx-0 scale-130">
                     <div className="absolute inset-0 translate-x-4 translate-y-4 rotate-2 rounded-3xl bg-[#6089F3]/10 border border-[#E1E7F7]"></div>
 
                     <div className="relative -rotate-1 hover:rotate-0 transition-transform duration-300 rounded-3xl bg-white border border-[#E1E7F7] shadow-xl shadow-[#6089F3]/10 overflow-hidden">
