@@ -3,6 +3,11 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import jwt from "jsonwebtoken";
 
+export const metadata = {
+    title: "Dashboard",
+    description: "Manage your appointments and profile on DocAppoint.",
+};
+
 const Dashboardpage = async () => {
   const session = await auth.api.getSession({
     headers: await headers()
