@@ -5,6 +5,11 @@ import { Spinner } from "@heroui/react";
 import Review from "@/components/Review";
 import Whychoosedocpoint from "@/components/Whychoosedocpoint";
 
+export const metadata = {
+    title: "Home",
+    description: "Find and book appointments with the best doctors near you.",
+};
+
 export default function Home() {
   return (
     <main>
