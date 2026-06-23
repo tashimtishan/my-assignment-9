@@ -31,7 +31,7 @@ const Hero = () => {
                             Browse Doctors
                         </Link>
                         <Link
-                            href="#how-it-works"
+                            href={"/dashboard"}
                             className="inline-flex items-center justify-center px-7 py-3.5 rounded-full border border-[#C7D2EC] text-[#202942] font-semibold hover:border-[#6089F3] hover:text-[#6089F3] transition-colors"
                         >
                             My Bookings

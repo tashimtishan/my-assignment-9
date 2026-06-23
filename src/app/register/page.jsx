@@ -27,6 +27,11 @@ const Registerpage = () => {
             alert("invalid information")
         }
     }
+    const handleGooglesignin = async () => {
+        await authClient.signIn.social({
+            provider: "google"
+        })
+    }
     return (
         <Form onSubmit={onSubmit} className="flex w-120 flex-col gap-4 container mx-auto p-10 mt-10 rounded-xl shadow-lg mb-10">
 
@@ -94,7 +99,7 @@ const Registerpage = () => {
                 <div className="flex-1 h-px bg-gray-300"></div>
             </div>
             <div className="flex gap-2">
-                <Button className="w-full rounded-md" variant={"outline"} type="submit">
+                <Button onClick={handleGooglesignin} className="w-full rounded-md" variant={"outline"} type="submit">
                     <FcGoogle className="w-5 h-5" /> Continue With Google
                 </Button>
             </div>

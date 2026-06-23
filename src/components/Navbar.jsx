@@ -34,7 +34,7 @@ const Navbar = () => {
                     <Avatar.Image src={user?.image || undefined} alt={user?.name} />
                     <Avatar.Fallback>{user?.name?.[0]?.toUpperCase()}</Avatar.Fallback>
                 </Avatar>
-                <Button onClick={handleSignout} variant={"danger"}>Logout</Button>
+                <Button onClick={handleSignout} variant={"danger"} className={"rounded-md"}>Logout</Button>
             </>
         ) : (
             <>
