@@ -6,6 +6,10 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+export const metadata = {
+    title: "Login",
+    description: "Login to your DocAppoint account to manage your appointments.",
+};
 const Loginpage = () => {
       const onSubmit = async (e) => {
         e.preventDefault()
