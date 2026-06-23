@@ -7,10 +7,6 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 
-export const metadata = {
-    title: "Register",
-    description: "Create a DocAppoint account and start booking doctor appointments.",
-};
 const Registerpage = () => {
      const onSubmit = async (e) =>{
         e.preventDefault()
