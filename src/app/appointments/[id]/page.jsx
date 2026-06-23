@@ -2,6 +2,17 @@ import BookAppointment from "@/components/BookAppointment";
 import Image from "next/image";
 import { HiOutlineLocationMarker, HiOutlineCurrencyDollar, HiOutlineOfficeBuilding, HiOutlineClock } from "react-icons/hi";
 
+export async function generateMetadata({ params }) {
+    const { id } = await params;
+    const res = await fetch(`http://localhost:8000/doctors/${id}`);
+    const doctor = await res.json();
+
+    return {
+        title: doctor.name,
+        description: `Book an appointment with ${doctor.name}, ${doctor.specialty} at ${doctor.hospital}, ${doctor.location}.`,
+    };
+}
+
 const DoctorDetailsPage = async ({ params }) => {
   const { id } = await params;
   const res = await fetch(`http://localhost:8000/doctors/${id}`);
