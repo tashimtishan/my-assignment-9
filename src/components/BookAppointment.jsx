@@ -4,8 +4,10 @@ import { useState } from "react";
 import { Button, Input, TextArea } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
+import { useAuthToken } from "@/hooks/useAuthToken";
 
 const BookAppointment = ({ doctor }) => {
+     const token = useAuthToken();
     const [appointmentTime, setAppointmentTime] = useState("");
     const [appointmentDate, setAppointmentDate] = useState("");
     const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +47,8 @@ const BookAppointment = ({ doctor }) => {
             const res = await fetch("http://localhost:8000/bookings", {
                 method: "POST",
                 headers: {
-                    "content-type": "application/json"
+                    "content-type": "application/json",
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify(bookingData)
             });
@@ -168,6 +171,7 @@ const BookAppointment = ({ doctor }) => {
                             </div>
 
                             <TextArea
+                              placeholder="Describe your symptoms or reason for visit"
                                 label="Reason for Visit (Optional)"
                                 value={reason}
                                 onChange={(e) => setReason(e.target.value)}

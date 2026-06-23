@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { useAuthToken } from "@/hooks/useAuthToken";
 
 const UpdateBookingModal = ({ booking }) => {
+    const token = useAuthToken();
     const [isOpen, setIsOpen] = useState(false);
     const [patientName, setPatientName] = useState(booking.patientName);
     const [date, setDate] = useState(booking.appointmentDate?.split("T")[0]);
@@ -17,7 +19,10 @@ const UpdateBookingModal = ({ booking }) => {
         setLoading(true);
         await fetch(`http://localhost:8000/bookings/${booking._id}`, {
             method: "PATCH",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                 "Content-Type": "application/json",
+                 "Authorization": `Bearer ${token}`
+                },
             body: JSON.stringify({
                 patientName,
                 appointmentDate: date,

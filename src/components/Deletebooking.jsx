@@ -4,8 +4,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@heroui/react";
 import toast from "react-hot-toast";
+import { useAuthToken } from "@/hooks/useAuthToken";
 
 const DeleteBooking = ({ bookingId }) => {
+    const token = useAuthToken();
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
@@ -15,6 +17,10 @@ const DeleteBooking = ({ bookingId }) => {
         try {
             await fetch(`http://localhost:8000/bookings/${bookingId}`, {
                 method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
             });
             toast.success("Booking deleted successfully!");
             setIsOpen(false);
