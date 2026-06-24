@@ -15,7 +15,7 @@ const DeleteBooking = ({ bookingId }) => {
     const handleDelete = async () => {
         setLoading(true);
         try {
-            await fetch(`http://localhost:8000/bookings/${bookingId}`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bookings/${bookingId}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

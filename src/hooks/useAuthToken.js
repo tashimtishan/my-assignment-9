@@ -11,7 +11,7 @@ export const useAuthToken = () => {
     useEffect(() => {
         const fetchToken = async () => {
             if (!user) return;
-            const res = await fetch("http://localhost:8000/auth/token", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/token`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

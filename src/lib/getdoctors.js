@@ -1,4 +1,4 @@
 export const getDoctors = async () => {
-    const res = await fetch("http://localhost:8000/doctors");
+    const res = await fetch(`${process.env.API_URL}/doctors`);
     return res.json();
 };

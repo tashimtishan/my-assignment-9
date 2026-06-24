@@ -20,7 +20,7 @@ const Dashboardpage = async () => {
     { expiresIn: "7d" }
   );
 
-  const result = await fetch(`http://localhost:8000/bookings/${user?.id}`, {
+  const result = await fetch(`${process.env.API_URL}/bookings/${user?.id}`, {
     headers: {
       "Authorization": `Bearer ${token}`
     }

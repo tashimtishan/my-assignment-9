@@ -4,7 +4,7 @@ import { HiOutlineLocationMarker, HiOutlineCurrencyDollar, HiOutlineOfficeBuildi
 
 export async function generateMetadata({ params }) {
     const { id } = await params;
-    const res = await fetch(`http://localhost:8000/doctors/${id}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/doctors/${id}`);
     const doctor = await res.json();
 
     return {
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }) {
 
 const DoctorDetailsPage = async ({ params }) => {
   const { id } = await params;
-  const res = await fetch(`http://localhost:8000/doctors/${id}`);
+  const res = await fetch(`${process.env.API_URL}/doctors/${id}`);
   const doctor = await res.json();
 
   return (

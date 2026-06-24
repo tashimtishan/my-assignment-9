@@ -22,7 +22,7 @@ const Registerpage = () => {
             password: user.password
         })
         if(data){
-            redirect("/")
+            redirect("/login")
         }
         if(error){
             alert("invalid information")
@@ -79,8 +79,8 @@ const Registerpage = () => {
                     if (!/[A-Z]/.test(value)) {
                         return "Password must contain at least one uppercase letter";
                     }
-                    if (!/[0-9]/.test(value)) {
-                        return "Password must contain at least one number";
+                    if (!/[a-z]/.test(value)) {
+                        return "Password must contain at least one lowercase letter";
                     }
                     return null;
                 }}

@@ -17,7 +17,7 @@ const UpdateBookingModal = ({ booking }) => {
 
     const handleUpdate = async () => {
         setLoading(true);
-        await fetch(`http://localhost:8000/bookings/${booking._id}`, {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bookings/${booking._id}`, {
             method: "PATCH",
             headers: {
                  "Content-Type": "application/json",
