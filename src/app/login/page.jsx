@@ -75,6 +75,8 @@ const Loginpage = () => {
                 <Input placeholder="Enter your password" />
                 <FieldError />
             </TextField>
+                <span className="text-right text-blue-600"><a href="">Forget Password?</a></span>
+
             <div className="flex gap-2">
                 <Button className="w-full mt-5 rounded-md bg-sky-500" type="submit">
                     Login
